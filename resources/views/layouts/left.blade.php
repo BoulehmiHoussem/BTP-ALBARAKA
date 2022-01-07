@@ -47,7 +47,7 @@
             <div class="collapse" id="rp">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('rh.list') }}">Utlisateurs</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Employées</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('employee.list') }}">Employées</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Pointage</a></li>
               </ul>
             </div>
