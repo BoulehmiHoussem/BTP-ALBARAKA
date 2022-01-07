@@ -109,7 +109,7 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $subtasks = Subtasks::where('task_id', '=', $id)->with('subtaskproducts.products')->get();
+        $subtasks = Subtasks::where('task_id', '=', $id)->with(['subtaskproducts.products', 'subtasklocations.locations'])->get();
         //dd($subtasks[0]->subtaskproducts);
         return view('tasks.edit')
         ->with('task', $task)

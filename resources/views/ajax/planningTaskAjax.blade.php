@@ -26,7 +26,7 @@
                             </div> 
                             <span class="normallink text-primary" data-toggle="modal" data-target="#dateModal"> De zzzzzz a zzzzzz </span>
                         </div>
-                        @include('layouts.components.task.products', ['products' => $subtask->subtaskproducts, 'counter' => $subtask->id])
+                        @include('layouts.components.task.products', ['products' => $subtask->subtaskproducts, 'counter' => $subtask->id, 'selectable' => true])
                     @endforeach  
                 </div>
                 

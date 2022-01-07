@@ -40,7 +40,7 @@
                         @if(isset($products))
                           @foreach ($products as $count => $product)
                             @foreach($product->products as $key => $liveprod)
-                              @include('ajax.productsSearchAjax' , ['product' => $liveprod , 'counter' => $key , 'quantity' => $products[$count]->product_quantity])
+                              @include('ajax.productsSearchAjax' , ['product' => $liveprod , 'counter' => $key , 'quantity' => $products[$count]->product_quantity, 'selectable' => (isset($selectable) ? true : false)])
                             @endforeach
                           @endforeach
                         @endif

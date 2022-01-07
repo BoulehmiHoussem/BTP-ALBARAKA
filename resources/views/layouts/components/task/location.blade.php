@@ -37,7 +37,13 @@
                         </tr>
                       </thead>
                       <tbody id="tbodylocation-{{ $counter }}">
-                        
+                        @if(isset($locations))
+                          @foreach ($locations as $count => $location)
+                            @foreach($location->locations as $key => $liveprod)
+                              @include('ajax.locationSearchAjax' , ['location' => $liveprod , 'counter' => $key , 'from' => $locations[$count]->location_from , 'to' => $locations[$count]->location_to,  'selectable' => (isset($selectable) ? true : false)])
+                            @endforeach
+                          @endforeach
+                        @endif
                       </tbody>
                     </table>
                   </div>

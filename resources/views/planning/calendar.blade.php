@@ -19,7 +19,9 @@
 <script>
     var id_planning = "{{$id_planning}}"
 $(document).ready(function(){
-    
+    $('.modal-footer .btn-primary').on('click', function(){
+        alert('fff')
+    })
     $('#searchnav').on('focusin', function(){
         $('#tasklistplanning').show();
     })

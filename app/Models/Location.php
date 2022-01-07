@@ -14,4 +14,9 @@ class Location extends Model
         "comment",
         "created_by"
     ];
+
+    public function subtask()
+    {
+        return $this->belongsToMany(Subtasks::class);
+    }
 }

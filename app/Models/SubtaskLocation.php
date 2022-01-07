@@ -15,4 +15,14 @@ class SubtaskLocation extends Model
         "location_from",
         "location_to"
     ];
+
+    public function subtasklocations()
+    {
+        return $this->hasMany(SubtaskLocation::class, 'location_id', 'id');
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class, 'id', 'location_id');
+    }
 }

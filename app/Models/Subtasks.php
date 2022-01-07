@@ -19,6 +19,11 @@ class Subtasks extends Model
         return $this->hasMany(SubtaskProduct::class, 'subtask_id', 'id');
     }
 
+    public function subtasklocations()
+    {
+        return $this->hasMany(SubtaskLocation::class, 'subtask_id', 'id');
+    }
+
     public function task()
     {
         return $this->belongsTo(Task::class, 'id', 'task_id');

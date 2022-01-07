@@ -22511,3 +22511,6 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
   background: #007bff33;
 }
 
+#listed_li{
+  transition: 0.3s;
+}

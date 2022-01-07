@@ -38,7 +38,7 @@
             <div id="locationmodals">
               @if(isset($subtasks))
                 @foreach ($subtasks as $key => $subtask)
-                  @include('layouts.components.task.location', ['counter' => $key])
+                  @include('layouts.components.task.location', ['counter' => $key , 'locations' => $subtask->subtasklocations])
                 @endforeach
               @endif
             </div>

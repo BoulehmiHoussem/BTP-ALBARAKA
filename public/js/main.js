@@ -4,12 +4,13 @@ var messages = {
 }
     
 var currentdate = $('#current_date').val();
-$(document).ready(function(){
-
+$('.product-quantity-add').on('click', function(){
+    alert('eee')
 })
 function refreshTasks(date, planning, token, url)
 {
     $('#current_date').val(date);
+    $('#listed_li').attr("style", 'opacity:0.3')
     $.ajax({
         //L'URL de la requête 
         url: url,
@@ -25,6 +26,7 @@ function refreshTasks(date, planning, token, url)
         dataType : "HTML",
     })
     .done(function(response){
+        $('#listed_li').attr("style", 'opacity:1')
         $('#listed_li').empty();
         $('#listed_li').html(response);
     })
@@ -211,6 +213,7 @@ $('.page-item').on('click', function(event){
 
   function appendtask(id, token, url, id_planning)
   {
+    
       var date = $('#current_date').val();
     $.ajax({
         //L'URL de la requête 
