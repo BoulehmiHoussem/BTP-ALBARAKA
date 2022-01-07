@@ -4,7 +4,7 @@
 @endsection
 
 @section('main')
-            @include('layouts.components.actions' , ['mainTitle' => $title , 'description' => $description])
+            @include('layouts.components.actions' , ['mainTitle' => $title , 'description' => $description, 'action' => route('rh.create')])
             <div class="row">
             <div class="col-lg-12 grid-margin">
               <div class="card">
@@ -38,7 +38,7 @@
                         @foreach($users as $user)
                         <tr>
                           <td class="py-1">
-                            <img src="../../images/faces/face1.jpg" alt="image">
+                            <img src="../../images/logo.png" alt="image">
                           </td>
                           <td>
                             {{ $user->name }}
@@ -47,11 +47,19 @@
                             {{ $user->email }}
                           </td>
                           <td>
-                            <label class="badge badge-success">Admin</label>
+                            @if($user->type == 1)
+                            <label class="badge badge-info">Superviseur</label>
+                            @elseif($user->type == 2)
+                            <label class="badge badge-primary">Chef chantier</label>
+                            @else
+                              <label class="badge badge-success">Admin</label>
+                            @endif
                           </td>
                           <td>
-                          <button type="button" class="btn btn-primary btn-sm pull-right"> Modifier</button>
-                          <button type="button" class="btn btn-danger btn-sm"> Supprimer</button>
+                          <td style="text-align: right">
+                            @php $route =  "ccc"  @endphp
+                            @include('layouts.components.actionbuttons', ['modifier' => $route ])
+                          </td>
                           </td>
                         </tr>
                         @endforeach

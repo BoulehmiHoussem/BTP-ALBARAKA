@@ -12,8 +12,9 @@
                           <td>
                             {{ $employee->telphone}}
                           </td>
-                          <td>
-
+                          <td style="text-align: right">
+                            @php $route =  route('employee.edit', ["id" => $employee->id] )  @endphp
+                            @include('layouts.components.actionbuttons', ['modifier' => $route ])
                           </td>
                         </tr>
                         @endforeach

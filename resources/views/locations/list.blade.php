@@ -22,7 +22,7 @@
                           <th>
                             Désignation
                           </th>
-                          <th>
+                          <th style="text-align: right">
                             Actions
                           </th>
                         </tr>
@@ -36,6 +36,11 @@
                           <td>
                           {{ $location->name }}
                           </td>
+                          <td style="text-align: right">
+                            @php $route =  route('locations.edit', ["id" => $location->id] )  @endphp
+                            @include('layouts.components.actionbuttons', ['modifier' => $route ])
+                          </td>
+                          
                         </tr>
                         @endforeach
                       </tbody>

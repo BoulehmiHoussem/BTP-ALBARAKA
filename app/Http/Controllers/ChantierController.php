@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use App\Models\Chantier;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ChantierRequest;
@@ -23,7 +23,7 @@ class ChantierController extends Controller
      */
     public function index()
     {
-        $chantiers = Chantier::paginate(10); 
+        $chantiers = Chantier::with('chef')->paginate(10); 
         if (isset($_GET['ajax']))
         {
             return view('ajax.chantiersAjax')
@@ -46,7 +46,8 @@ class ChantierController extends Controller
      */
     public function create()
     {
-        return view('chantiers.create');
+        $chefs = User::where('type', 2)->get();
+        return view('chantiers.create')->with('chefs', $chefs);
     }
 
     /**

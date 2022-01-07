@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\HrRequest;
+
 use App\Models\User;
+
+use Illuminate\Support\Facades\Hash;
+
 
 class HrController extends Controller
 {
@@ -34,18 +39,26 @@ class HrController extends Controller
      */
     public function create()
     {
-        //
+        return view('humanresources.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\HrRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HrRequest $request)
     {
-        //
+        
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'type' => $request->input('type'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+
+        return redirect()->route('rh.list');
     }
 
     /**

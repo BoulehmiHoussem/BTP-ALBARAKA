@@ -38,6 +38,8 @@ Route::prefix('planning')->name('planning.')->group(function () {
 
 Route::prefix('resources_humaines')->name('rh.')->group(function () {
     Route::get('/', [App\Http\Controllers\HrController::class, 'index'])->name('list');
+    Route::get('/create', [App\Http\Controllers\HrController::class, 'create'])->name('create');
+    Route::post('/store', [App\Http\Controllers\HrController::class, 'store'])->name('store');
 });
 
 Route::prefix('products')->name('products.')->group(function () {

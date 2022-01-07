@@ -89,8 +89,8 @@ class PlanningController extends Controller
 
         $tasks = PlanningTak::where('planning_id', $id_planning)
                     ->where("created_at", $planning->start_date)
-                    ->with('tasks.subtasks.subtaskproducts.products')->get()->pluck('tasks');
-        return view('planning.calendar')
+                    ->with(['tasks.subtasks.subtaskproducts.products', 'tasks.subtasks.subtasklocations.locations'])->get()->pluck('tasks');  
+            return view('planning.calendar')
                 ->with('tasks', $tasks)
                 ->with('id_planning', $id_planning)
                 ->with('dates', $dates);

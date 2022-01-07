@@ -9,10 +9,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Bordered table</h4>
-                  <p class="card-description">
-                    Add class <code>.table-bordered</code>
-                  </p>
+                  <h4 class="card-title">$description</h4>
+                 
                   <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                       <thead>
@@ -21,16 +19,10 @@
                             #
                           </th>
                           <th>
-                            First name
+                            Nom
                           </th>
-                          <th>
-                            Progress
-                          </th>
-                          <th>
-                            Amount
-                          </th>
-                          <th>
-                            Deadline
+                          <th style="text-align: right">
+                            Actions
                           </th>
                         </tr>
                       </thead>
@@ -43,17 +35,11 @@
                           <td>
                             {{ $task->name }}
                           </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                          <td style="text-align: right">
+                            @php $route =  route('tasks.edit', ["id" => $task->id] )  @endphp
+                            @include('layouts.components.actionbuttons', ['modifier' => $route ])
                           </td>
-                          <td>
-                            $ 77.99
-                          </td>
-                          <td>
-                            May 15, 2015
-                          </td>
+                         
                         </tr>
                         @endforeach
                       </tbody>

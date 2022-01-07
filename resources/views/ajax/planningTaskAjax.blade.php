@@ -20,13 +20,14 @@
                                 <strike id="strike2" class="strike_none">{{ $subtask->name }}</strike> 
                                 <div class="actionstask"> 
                                     <a href="#" class=" text-success" data-toggle="modal" data-target="#productmodal-{{$subtask->id}}"> <i class="mdi mdi-cart-plus"></i> </a>
-                                    <a href="#" class=" text-primary"> <i class="mdi mdi-car"></i> </a>
+                                    <a href="#" class=" text-primary" data-toggle="modal" data-target="#locationmodal-{{$subtask->id}}"> <i class="mdi mdi-car"></i> </a>
                                     <a href="#" class=" text-dark"> <i class="mdi mdi-account-multiple"></i> </a>
                                  </div> 
                             </div> 
                             <span class="normallink text-primary" data-toggle="modal" data-target="#dateModal"> De zzzzzz a zzzzzz </span>
                         </div>
                         @include('layouts.components.task.products', ['products' => $subtask->subtaskproducts, 'counter' => $subtask->id, 'selectable' => true])
+                        @include('layouts.components.task.location', ['locations' => $subtask->subtasklocations, 'counter' => $subtask->id, 'selectable' => true])    
                     @endforeach  
                 </div>
                 

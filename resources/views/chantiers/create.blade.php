@@ -31,8 +31,9 @@
                     <div class="form-group">
                       <label for="exampleSelectGender">Chef chantier</label>
                         <select class="form-control" name="chef_id" id="exampleSelectGender">
-                          <option value="1">Male</option>
-                          <option value="2">Female</option>
+                          @foreach($chefs as $chef)
+                          <option value="{{$chef->id}}">{{$chef->name}}</option>
+                          @endforeach
                         </select>
                         @error('chef_id')
                         <span class="badge badge-danger col-md-12" role="alert">

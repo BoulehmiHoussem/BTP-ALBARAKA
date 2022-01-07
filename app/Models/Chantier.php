@@ -15,4 +15,9 @@ class Chantier extends Model
         'comment',
         'created_by',
     ];
+
+    public function chef()
+    {
+        return $this->hasOne(User::class, 'id', 'chef_id');
+    }
 }
