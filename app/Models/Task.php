@@ -18,4 +18,9 @@ class Task extends Model
     {
         return $this->hasMany(subtasks::class, 'task_id', 'id');
     }
+
+    public function planningtak()
+    {
+        return $this->hasMany(planningtak::class, 'task_id', 'id');
+    }
 }

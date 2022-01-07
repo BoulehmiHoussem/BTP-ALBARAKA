@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\Subtasks;
 use App\Models\SubtaskProduct;
 use App\Models\SubtaskLocation;
+use App\Models\PlanningTak;
 
 class TaskController extends Controller
 {
@@ -155,5 +156,17 @@ class TaskController extends Controller
             return view('ajax.taskSearchAjax')
             ->with('tasks' , $task);
         
+    }
+
+    function getTask(Request $request)
+    {
+    
+        $task = Task::where('id', $request->id)->with('subtasks.subtaskproducts.products')->first();
+        $planning = new PlanningTak();
+        $planning->task_id = $request->id;
+        $planning->planning_id = $request->planning_id;
+        $planning->created_by = 1;
+        $planning->save();
+        return view('ajax.planningTaskAjax')->with('task', $task);
     }
 }

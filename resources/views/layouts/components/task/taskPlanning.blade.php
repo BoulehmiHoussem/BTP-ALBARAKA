@@ -1,11 +1,21 @@
-<div class="card col-lg-12">
-        <div class="inner_card">
-            <h4 class="setdate">11 January,Monday 2021</h4>
-            <h5 class="settime">4:00 PM</h5>
-        </div>
+<div class="col-md-2">
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    Dates
+  </a>
+  @foreach($dates as $date)
+    <a href="#" class="list-group-item">{{ $date }}</a>
+  @endforeach
+  
+</div>
+</div>
+<div class="card col-lg-10">
+        
         <ul class="list">
-        <li>
+        
+        <li id="tasklistplanning">
                 <div class="content"> 
+                    
                     <div class="center_content">
                         <input type="text" class="form-control" id="searchnav">
                         <div class="searchnav">
@@ -26,40 +36,18 @@
                 </div>
                 
             </li>
-            
-            @foreach($tasks as $task)
-            <li>
-                <div class="content"> 
-                    <div class="center_content">
-                        <small class="check1" onclick="checked(1)"></small> 
-                        <strike id="strike1" class="strike_none">{{ $task->name }}</strike> 
-                    </div> 
-                    <span class="normallink"> 
-                        <a class="btn btn-link" data-toggle="collapse" href="#multiCollapseExample{{ $task->id }}" role="button" aria-expanded="false" aria-controls="multiCollapseExample{{ $task->id }}">
-                            <i id="tick1" class="mdi mdi-eye"></i>
-                        </a>
-                    </span>
+            @if(sizeof($tasks) != 0)
+                @foreach($tasks as $task)
+                    @include('ajax.planningTaskAjax', ['task' => $task, 'id_planning' => $id_planning])
+                @endforeach
+            @else
+                <div class="col-md-12 nodata">
+                    <div class="rounded-circle">
+                        <i class="mdi mdi-exclamation"></i>
+                    </div>
+                    
                 </div>
-                
-                <div id="multiCollapseExample{{ $task->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    @foreach($task->subtasks as $subtask)
-                        <div class="content"> <span class="subtask"><i class="mdi mdi-subdirectory-arrow-right"></i></span> 
-                            <div class="center_content"> 
-                                <small class="check2" onclick="checked(2)"></small>
-                                <strike id="strike2" class="strike_none">{{ $subtask->name }}</strike> 
-                                <div class="actionstask"> 
-                                    <a href="#" class=" text-success"> <i class="mdi mdi-cart-plus"></i> </a>
-                                    <a href="#" class=" text-primary"> <i class="mdi mdi-car"></i> </a>
-                                    <a href="#" class=" text-dark"> <i class="mdi mdi-account-multiple"></i> </a>
-                                 </div> 
-                            </div> 
-                            <span class="normallink text-primary" data-toggle="modal" data-target="#dateModal"> De zzzzzz a zzzzzz </span>
-                        </div>
-                    @endforeach  
-                </div>
-                
-            </li>
-            @endforeach
+            @endif
         </ul>
         @include('layouts.components.task.dateModal')
     </div>

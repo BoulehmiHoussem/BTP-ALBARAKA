@@ -9,7 +9,7 @@
 @section('main')
 <div class="container">
     <div class="row">
-        @include('layouts.components.task.taskPlanning')
+        @include('layouts.components.task.taskPlanning', ['id_planning' => $id_planning])
     </div>
 </div>
 @endsection
@@ -18,6 +18,10 @@
 @section('js')
 <script>
 $(document).ready(function(){
+    
+    $('#searchnav').on('focusin', function(){
+        $('#tasklistplanning').show();
+    })
     var urlTaskSearch = "{{ route('tasks.search') }}"
     $('#searchnav').on('keyup', function(){
         var searching = $(this).val()

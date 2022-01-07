@@ -7,7 +7,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('planning.chantiers') }}">
               <i class="mdi mdi-blur-linear menu-icon"></i>
               <span class="menu-title">Planning</span>
             </a>

@@ -179,3 +179,31 @@ $('.page-item').on('click', function(event){
         console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
     })
   }
+
+  function appendtask(id, token, url, id_planning)
+  {
+    $.ajax({
+        //L'URL de la requête 
+        url: url,
+
+        //La méthode d'envoi (type de requête)
+        method: "GET",
+
+        //data
+        data: { 'planning_id': id_planning,
+                "task_id": id,
+                "id" : id,
+                "_token": token },
+        //Le format de réponse attendu
+        dataType : "HTML",
+    })
+    .done(function(response){
+        console.log(response)
+        $('#tasklistplanning').append(response)
+        $('.searchnav').hide();
+        $('.nodata').hide();
+    })
+    .fail(function(error){
+        console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
+    })
+  }

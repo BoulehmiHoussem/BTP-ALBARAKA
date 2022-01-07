@@ -19171,6 +19171,13 @@ code {
   padding: 0;
 }
 
+.btn.btn-table {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  padding: 0;
+}
+
 .btn.btn-icon-text .btn-icon-prepend {
   margin-right: .5rem;
 }
@@ -22256,7 +22263,7 @@ i.fa-star.rating{color: rgb(232, 217, 31);}
 .center_content small {
     height: 22px;
     width: 22px;
-    border: 1px solid blue;
+    border: 1px solid red;
     border-radius: 50%;
     margin-left: 10px;
     cursor: pointer;
@@ -22272,7 +22279,7 @@ i.fa-star.rating{color: rgb(232, 217, 31);}
     position: absolute;
     height: 12px;
     width: 12px;
-    background-color: blue;
+    background-color: red;
     border-radius: 50%;
     top: 14px;
     left: 15px;
@@ -22432,4 +22439,47 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
     z-index: 10;
     display: none;
     background: #ffffff;
+}
+
+.nodata{
+  height: 350px;
+  border: 3px dotted #e7eeff;
+  border-radius: 10px;
+  text-align: center;
+}
+.nodata .rounded-circle{
+  height: 200px;
+  width: 200px;
+  border: 3px solid #4d83ff;
+  line-height: 200px;
+  margin: 45px auto;
+}
+.nodata .rounded-circle i{
+  font-size: 200px;
+  color:#4d83ff;
+}
+
+.chantierselect{
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chantierselect a{
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  color: #000;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.chantierselect:hover{
+  background-color: #4d83ff;
+  color:#fff;
+}
+.chantierselect:hover i{
+  color:#fff;
+}
+.chantierselect:hover a{
+  color:#fff;
 }

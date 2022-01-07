@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\PlanningTak;
 use App\Models\Task;
+use App\Models\Planning;
+use App\Models\Chantier;
 
 class PlanningController extends Controller
 {
@@ -15,7 +18,23 @@ class PlanningController extends Controller
      */
     public function index()
     {
+        $chantiers = Chantier::paginate(32); 
+        if (isset($_GET['ajax']))
+        {
+            return view('ajax.chantiersAjax')
+            ->with('chantiers' , $chantiers);
+        }
+        else
+        {
+            return view("planning.chantiers")->with('chantiers', $chantiers);
+        }
         
+    }
+
+    public function plannings($id)
+    {
+        $plannings = Planning::where('chantier_id', $id)->get();
+        return view("planning.list")->with('plannings', $plannings)->with('action', route('planning.create', ['id' => $id]))->with('chantier_id', $id);
     }
 
     /**
@@ -23,9 +42,9 @@ class PlanningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view("planning.create")->with('chantier_id', $id);
     }
 
     /**
@@ -36,7 +55,15 @@ class PlanningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        $planning = new Planning();
+        $planning->name = $request->input("name");
+        $planning->start_date = $request->input("start_date");
+        $planning->end_date = $request->input("end_date");
+        $planning->comment = $request->input("comment");
+        $planning->chantier_id = $request->input("chantier_id");
+        $planning->save();
+        return redirect()->route('planning.list', ['id' => $planning->chantier_id]);
     }
 
     /**
@@ -45,10 +72,29 @@ class PlanningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_chantier, $id_planning)
     {
-        $task = Task::with('subtasks')->get();
-        return view('planning.calendar')->with('tasks', $task);
+        $planning = Planning::findOrFail($id_planning);
+        $firstdate = strtotime($planning->start_date);
+        $lastdate = strtotime($planning->end_date);
+
+        $dates[0] = date("Y-m-d", $firstdate);
+        $days = 1;
+
+        do
+        {
+            $dates[$days] = date("d/m/Y", strtotime($days." day", $firstdate));
+            $days ++;
+        }while (strtotime($days." day", $firstdate) <= $lastdate);
+   
+        $your_date = strtotime("1 day", strtotime("2016-08-24"));
+        $new_date = date("Y-m-d", $your_date);
+        $tasks = PlanningTak::where('planning_id', $id_planning)
+                    ->with('tasks.subtasks.subtaskproducts.products')->get()->pluck('tasks');
+        return view('planning.calendar')
+                ->with('tasks', $tasks)
+                ->with('id_planning', $id_planning)
+                ->with('dates', $dates);
     }
 
     /**

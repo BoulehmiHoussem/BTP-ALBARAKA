@@ -20,8 +20,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::prefix('planning')->name('planning.')->group(function () {
-
+    Route::post('/store', [App\Http\Controllers\PlanningController::class, 'store'])->name('store');
+    
     Route::get('/config/{id_chantier}/{id_planning}', [App\Http\Controllers\PlanningController::class, 'show'])->name('calendar');
+    Route::get('/chantiers', [App\Http\Controllers\PlanningController::class, 'index'])->name('chantiers');
+    Route::get('/chantiers/{id}', [App\Http\Controllers\PlanningController::class, 'plannings'])->name('list');
+    Route::get('/chantiers/{id}/create', [App\Http\Controllers\PlanningController::class, 'create'])->name('create');
 });
 
 Route::prefix('resources_humaines')->name('rh.')->group(function () {
@@ -54,6 +58,7 @@ Route::prefix('taches')->name('tasks.')->group(function () {
     Route::post('/store', [App\Http\Controllers\TaskController::class, 'store'])->name('store');
     Route::post('/newtask', [App\Http\Controllers\TaskController::class, 'newtask'])->name('newtask');
     Route::post('/search', [App\Http\Controllers\TaskController::class, 'search'])->name('search');
+    Route::get('/gettask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('gettask');
 });
 
 Route::prefix('chantiers')->name('chantiers.')->group(function () {
