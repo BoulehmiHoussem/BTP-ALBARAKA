@@ -67,7 +67,7 @@ Route::prefix('taches')->name('tasks.')->group(function () {
     Route::post('/newtask', [App\Http\Controllers\TaskController::class, 'newtask'])->name('newtask');
     Route::post('/search', [App\Http\Controllers\TaskController::class, 'search'])->name('search');
     Route::get('/gettask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('gettask');
-    Route::post('/refreshtask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('refresh');
+    Route::post('/refreshtask', [App\Http\Controllers\TaskController::class, 'refreshTask'])->name('refresh');
     
 });
 

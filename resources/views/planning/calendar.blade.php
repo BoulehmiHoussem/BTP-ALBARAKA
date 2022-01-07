@@ -29,6 +29,9 @@ $(document).ready(function(){
         searchTasks(searching, urlTaskSearch, "{{ csrf_token() }}", id_planning);
     });
     $('.searchdate').on('click', function(e){
+        $('.searchdateactivate').addClass("searchdate");
+        $('.searchdateactivate').removeClass("searchdateactivate");
+        $(this).addClass("searchdateactivate");
         e.preventDefault();
         realdate = $(this).data('date');
         planning = $(this).data('planning');

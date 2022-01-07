@@ -1,13 +1,9 @@
 <div class="col-md-2">
 <div class="list-group">
-  <a href="#" class="list-group-item active">
-    Dates
-  </a>
-  @foreach($dates as $date)
-    <a class="list-group-item searchdate" data-planning='{{$id_planning}}' data-date='{{date("Y-m-d", strtotime($date))}}'>{{ $date }}</a>
-    
+  @foreach($dates as $key => $date)
+    <a class="list-group-item @if($key==0) searchdateactivate @else searchdate @endif" data-planning='{{$id_planning}}' data-date='{{date("Y-m-d", strtotime($date))}}'>{{ $date }}</a>
   @endforeach
-  
+    <input type="hidden" value="{{$dates[0]}}" id="current_date">
 </div>
 </div>
 <div class="card col-lg-10">
@@ -37,11 +33,13 @@
                 </div>
                 
             </li>
+            <div id="listed_li">
             @if(sizeof($tasks) != 0)
                 @foreach($tasks as $task)
                     @include('ajax.planningTaskAjax', ['task' => $task, 'id_planning' => $id_planning])
                 @endforeach
             @else
+            </div>
                 <div class="col-md-12 nodata">
                     <div class="rounded-circle">
                         <i class="mdi mdi-exclamation"></i>

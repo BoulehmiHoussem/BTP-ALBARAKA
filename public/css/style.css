@@ -22483,3 +22483,31 @@ div.button, div.checker, div.radio, div.selector, div.uploader {
 .chantierselect:hover a{
   color:#fff;
 }
+
+.searchdate {
+    font-size: 11px;
+    cursor: pointer;
+    text-align: center;
+    border-left: 4px solid grey;
+    transition: 0.3s;
+}
+
+
+.searchdateactivate {
+  font-size: 11px;
+  font-weight: bolder;
+  text-align: center;
+  border-left: 16px solid #007bff;
+  color: #007bff !important;
+  background: #007bff33;
+}
+
+.searchdate:hover {
+  font-size: 11px;
+  font-weight: bolder;
+  text-align: center;
+  border-left: 16px solid #007bff;
+  color: #007bff !important;
+  background: #007bff33;
+}
+

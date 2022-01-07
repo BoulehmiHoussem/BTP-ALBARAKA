@@ -3,12 +3,34 @@ var messages = {
     success: 'ajouté avec succes',
 }
     
+var currentdate = $('#current_date').val();
 $(document).ready(function(){
 
 })
-function refreshTasks(date, planning, url, token)
+function refreshTasks(date, planning, token, url)
 {
-    
+    $('#current_date').val(date);
+    $.ajax({
+        //L'URL de la requête 
+        url: url,
+
+        //La méthode d'envoi (type de requête)
+        method: "POST",
+
+        //data
+        data: { "planning_id" : planning,
+                "date" : $('#current_date').val(),
+                "_token": token },
+        //Le format de réponse attendu
+        dataType : "HTML",
+    })
+    .done(function(response){
+        $('#listed_li').empty();
+        $('#listed_li').html(response);
+    })
+    .fail(function(error){
+        console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
+    })
 }
 function searchTasks(tosearch, url, token, planning_id)
 {
@@ -189,6 +211,7 @@ $('.page-item').on('click', function(event){
 
   function appendtask(id, token, url, id_planning)
   {
+      var date = $('#current_date').val();
     $.ajax({
         //L'URL de la requête 
         url: url,
@@ -197,7 +220,8 @@ $('.page-item').on('click', function(event){
         method: "GET",
 
         //data
-        data: { 'planning_id': id_planning,
+        data: { 'created_at' : date,
+                'planning_id': id_planning,
                 "task_id": id,
                 "id" : id,
                 "_token": token },
@@ -206,7 +230,7 @@ $('.page-item').on('click', function(event){
     })
     .done(function(response){
         console.log(response)
-        $('#tasklistplanning').append(response)
+        $('#listed_li').append(response)
         $('.searchnav').hide();
         $('.nodata').hide();
     })

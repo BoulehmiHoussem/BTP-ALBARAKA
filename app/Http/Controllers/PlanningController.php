@@ -83,19 +83,20 @@ class PlanningController extends Controller
 
         do
         {
-            $dates[$days] = date("d/m/Y", strtotime($days." day", $firstdate));
+            $dates[$days] = date("Y-m-d", strtotime($days." day", $firstdate));
             $days ++;
         }while (strtotime($days." day", $firstdate) <= $lastdate);
-   
-        $your_date = strtotime("1 day", strtotime("2016-08-24"));
-        $new_date = date("Y-m-d", $your_date);
+
         $tasks = PlanningTak::where('planning_id', $id_planning)
+                    ->where("created_at", $planning->start_date)
                     ->with('tasks.subtasks.subtaskproducts.products')->get()->pluck('tasks');
         return view('planning.calendar')
                 ->with('tasks', $tasks)
                 ->with('id_planning', $id_planning)
                 ->with('dates', $dates);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

@@ -167,7 +167,18 @@ class TaskController extends Controller
         $planning->task_id = $request->id;
         $planning->planning_id = $request->planning_id;
         $planning->created_by = 1;
+        $planning->created_at = $request->created_at;
         $planning->save();
         return view('ajax.planningTaskAjax')->with('task', $task);
     }
+
+    public function refreshTask(Request $request)
+    {
+        $tasks = PlanningTak::where('planning_id', $request->planning_id)
+        ->where("created_at", $request->date)
+        ->with('tasks.subtasks.subtaskproducts.products')->get()->pluck('tasks');
+        return view('ajax.refreshTasksAjax')->with('tasks', $tasks)->with("id_planning", $request->planning_id);
+
+    }
+
 }
