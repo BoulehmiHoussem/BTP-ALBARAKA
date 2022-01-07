@@ -22263,7 +22263,7 @@ i.fa-star.rating{color: rgb(232, 217, 31);}
 .center_content small {
     height: 22px;
     width: 22px;
-    border: 1px solid red;
+    border: 1px solid blue;
     border-radius: 50%;
     margin-left: 10px;
     cursor: pointer;
@@ -22279,7 +22279,7 @@ i.fa-star.rating{color: rgb(232, 217, 31);}
     position: absolute;
     height: 12px;
     width: 12px;
-    background-color: red;
+    background-color: blue;
     border-radius: 50%;
     top: 14px;
     left: 15px;

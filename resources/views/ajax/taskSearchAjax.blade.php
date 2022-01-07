@@ -1,6 +1,6 @@
                 @if(sizeof($tasks) != 0)
                     @foreach($tasks as $task)
-                        <tr onclick="return appendtask({{ $task->id }}, '{{ csrf_token() }}', '{{ route('tasks.gettask')}}', 1) ">
+                        <tr onclick="return appendtask({{ $task->id }}, '{{ csrf_token() }}', '{{ route('tasks.gettask')}}', {{$planning_id}}) ">
                           <td style="    font-size: 15px;padding: 0.25rem 0.9375rem; cursor: pointer">
                             <div class="badge badge-primary btn-rounded btn-icon" style="margin-right:20px;">
                                 {{ $task->id }}

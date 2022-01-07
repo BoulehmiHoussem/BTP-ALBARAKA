@@ -154,7 +154,8 @@ class TaskController extends Controller
         $task = Task::where("name", 'like',  "%".$request->search."%")->orWhere("id", 'like',  "%".$request->search."%")->get();
        
             return view('ajax.taskSearchAjax')
-            ->with('tasks' , $task);
+            ->with('tasks' , $task)
+            ->with('planning_id', $request->planning_id);
         
     }
 

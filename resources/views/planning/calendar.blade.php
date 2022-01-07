@@ -17,6 +17,7 @@
 
 @section('js')
 <script>
+    var id_planning = "{{$id_planning}}"
 $(document).ready(function(){
     
     $('#searchnav').on('focusin', function(){
@@ -25,8 +26,14 @@ $(document).ready(function(){
     var urlTaskSearch = "{{ route('tasks.search') }}"
     $('#searchnav').on('keyup', function(){
         var searching = $(this).val()
-        searchTasks(searching, urlTaskSearch, "{{ csrf_token() }}");
+        searchTasks(searching, urlTaskSearch, "{{ csrf_token() }}", id_planning);
     });
+    $('.searchdate').on('click', function(e){
+        e.preventDefault();
+        realdate = $(this).data('date');
+        planning = $(this).data('planning');
+        refreshTasks(realdate, planning , "{{ csrf_token() }}" , "{{ route('tasks.refresh') }}")
+    })
 })
 const setdate=document.querySelector(".setdate");
 const date= new Date().toDateString();

@@ -18,6 +18,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::prefix('employee')->name('employee.')->group(function () {
+    Route::get('/', [App\Http\Controllers\EmployeeController::class, 'index'])->name('list');
+    Route::get('/create', [App\Http\Controllers\EmployeeController::class, 'create'])->name('create');
+    Route::get('/edit/{id}', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('edit');
+    Route::post('/store', [App\Http\Controllers\EmployeeController::class, 'store'])->name('store');
+    
+});
+
 
 Route::prefix('planning')->name('planning.')->group(function () {
     Route::post('/store', [App\Http\Controllers\PlanningController::class, 'store'])->name('store');
@@ -59,6 +67,8 @@ Route::prefix('taches')->name('tasks.')->group(function () {
     Route::post('/newtask', [App\Http\Controllers\TaskController::class, 'newtask'])->name('newtask');
     Route::post('/search', [App\Http\Controllers\TaskController::class, 'search'])->name('search');
     Route::get('/gettask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('gettask');
+    Route::post('/refreshtask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('refresh');
+    
 });
 
 Route::prefix('chantiers')->name('chantiers.')->group(function () {

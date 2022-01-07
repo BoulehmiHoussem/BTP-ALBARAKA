@@ -4,7 +4,8 @@
     Dates
   </a>
   @foreach($dates as $date)
-    <a href="#" class="list-group-item">{{ $date }}</a>
+    <a class="list-group-item searchdate" data-planning='{{$id_planning}}' data-date='{{date("Y-m-d", strtotime($date))}}'>{{ $date }}</a>
+    
   @endforeach
   
 </div>

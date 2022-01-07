@@ -3,7 +3,14 @@ var messages = {
     success: 'ajouté avec succes',
 }
     
-function searchTasks(tosearch, url, token)
+$(document).ready(function(){
+
+})
+function refreshTasks(date, planning, url, token)
+{
+    
+}
+function searchTasks(tosearch, url, token, planning_id)
 {
     if(tosearch == "")
     {
@@ -19,7 +26,7 @@ function searchTasks(tosearch, url, token)
             method: "POST",
     
             //data
-            data: { 
+            data: { "planning_id" : planning_id,
                     "search" : tosearch,
                     "_token": token },
             //Le format de réponse attendu
