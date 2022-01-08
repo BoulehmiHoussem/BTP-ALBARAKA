@@ -70,6 +70,7 @@ Route::prefix('taches')->name('tasks.')->group(function () {
     Route::post('/search', [App\Http\Controllers\TaskController::class, 'search'])->name('search');
     Route::get('/gettask', [App\Http\Controllers\TaskController::class, 'getTask'])->name('gettask');
     Route::post('/refreshtask', [App\Http\Controllers\TaskController::class, 'refreshTask'])->name('refresh');
+    Route::post('/registersub', [App\Http\Controllers\TaskController::class, 'registersub'])->name('registersub');
     
 });
 

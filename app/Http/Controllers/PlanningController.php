@@ -8,6 +8,8 @@ use App\Models\PlanningTak;
 use App\Models\Task;
 use App\Models\Planning;
 use App\Models\Chantier;
+use Illuminate\Support\Facades\Auth;
+
 
 class PlanningController extends Controller
 {
@@ -18,7 +20,13 @@ class PlanningController extends Controller
      */
     public function index()
     {
-        $chantiers = Chantier::paginate(32); 
+        if(Auth::user()->type == 2)
+        {
+            $chantiers = Chantier::where('chef_id', Auth::id())->paginate(32); 
+        }else{
+            $chantiers = Chantier::paginate(32); 
+        }
+        
         if (isset($_GET['ajax']))
         {
             return view('ajax.chantiersAjax')
@@ -86,9 +94,16 @@ class PlanningController extends Controller
             $dates[$days] = date("Y-m-d", strtotime($days." day", $firstdate));
             $days ++;
         }while (strtotime($days." day", $firstdate) <= $lastdate);
-
+        if(Auth::user()->type == 2)
+        {
+            $datefilter = "2022-01-08";
+        }
+        else
+        {
+            $datefilter = $planning->start_date;
+        }
         $tasks = PlanningTak::where('planning_id', $id_planning)
-                    ->where("created_at", $planning->start_date)
+                    ->where("created_at", $datefilter)
                     ->with(['tasks.subtasks.subtaskproducts.products', 'tasks.subtasks.subtasklocations.locations'])->get()->pluck('tasks');  
             return view('planning.calendar')
                 ->with('tasks', $tasks)

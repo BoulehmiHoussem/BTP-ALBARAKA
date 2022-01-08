@@ -9,6 +9,8 @@ use App\Models\Subtasks;
 use App\Models\SubtaskProduct;
 use App\Models\SubtaskLocation;
 use App\Models\PlanningTak;
+use Illuminate\Support\Facades\Auth;
+
 
 class TaskController extends Controller
 {
@@ -174,11 +176,24 @@ class TaskController extends Controller
 
     public function refreshTask(Request $request)
     {
-        $tasks = PlanningTak::where('planning_id', $request->planning_id)
+        if(Auth::user()->type == 2)
+        {
+            $datefilter = "2022-01-08";
+        }
+        else
+        {
+            $datefilter = $request->planning_id;
+        }
+        $tasks = PlanningTak::where('planning_id', $datefilter)
         ->where("created_at", $request->date)
         ->with('tasks.subtasks.subtaskproducts.products')->get()->pluck('tasks');
         return view('ajax.refreshTasksAjax')->with('tasks', $tasks)->with("id_planning", $request->planning_id);
 
     }
 
+
+    public function registersub(Request $request)
+    {
+        echo 'done';
+    }
 }

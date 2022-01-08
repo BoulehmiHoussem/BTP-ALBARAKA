@@ -18,13 +18,22 @@
                             <div class="center_content"> 
                                 <small class="check2" onclick="checked(2)"></small>
                                 <strike id="strike2" class="strike_none">{{ $subtask->name }}</strike> 
-                                <div class="actionstask"> 
+                                <div class="actionstask " id="actions-{{$subtask->id}}" style='display:none'> 
                                     <a href="#" class=" text-success" data-toggle="modal" data-target="#productmodal-{{$subtask->id}}"> <i class="mdi mdi-cart-plus"></i> </a>
                                     <a href="#" class=" text-primary" data-toggle="modal" data-target="#locationmodal-{{$subtask->id}}"> <i class="mdi mdi-car"></i> </a>
                                     <a href="#" class=" text-dark"> <i class="mdi mdi-account-multiple"></i> </a>
                                  </div> 
                             </div> 
-                            <span class="normallink text-primary" data-toggle="modal" data-target="#dateModal"> De zzzzzz a zzzzzz </span>
+                            <span class="text-primary normallink"><input id="start-{{$subtask->id}}" type="time" class="form-control"> </span>
+                            <span class="text-primary normallink"><input id="end-{{$subtask->id}}" type="time" class="form-control"> </span>
+                            <div style="line-height: 3;">
+                                <a class="btn btn-success btn-rounded btn-table" href="#" id="show-{{$subtask->id}}" onclick="return registerSub({{$subtask->id}}, '{{ route('tasks.registersub') }}' ,'{{ csrf_token() }}')">
+                                    <i class="mdi mdi-check "> </i>
+                                </a> 
+                                <a class="btn btn-danger btn-rounded btn-table" id="hide-{{$subtask->id}}" style="display:none" href="#" onclick="return removeSub({{$subtask->id}})">
+                                    <i class="mdi mdi-close "> </i>
+                                </a> 
+                            </div>
                         </div>
                         @include('layouts.components.task.products', ['products' => $subtask->subtaskproducts, 'counter' => $subtask->id, 'selectable' => true])
                         @include('layouts.components.task.location', ['locations' => $subtask->subtasklocations, 'counter' => $subtask->id, 'selectable' => true])    

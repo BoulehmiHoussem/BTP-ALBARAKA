@@ -2,7 +2,47 @@ var messages = {
     error: 'non definie',
     success: 'ajouté avec succes',
 }
+    function registerSub(id, url, token)
+    {
+        start = $('#start-'+id).val()
+        end = $('#start-'+id).val()
+        
+        $.ajax({
+            //L'URL de la requête 
+            url: url,
     
+            //La méthode d'envoi (type de requête)
+            method: "POST",
+    
+            //data
+            data: { "subtask" : id,
+                    "start" : start,
+                    "end" : end,
+                    "_token": token },
+            //Le format de réponse attendu
+          
+        })
+        .done(function(response){
+            console.log(response)
+            $('#hide-'+id).show()
+            $('#show-'+id).hide()
+            $('#actions-'+id).show()
+
+        })
+        .fail(function(error){
+            console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error));
+        })
+        return false;
+    }
+    function removeSub(id)
+    {
+        $('#hide-'+id).hide()
+        $('#show-'+id).show()
+      
+            $('#actions-'+id).hide()
+            $('#start-'+id).val("")
+            $('#end-'+id).val("")
+    }
 var currentdate = $('#current_date').val();
 $('.product-quantity-add').on('click', function(){
     alert('eee')

@@ -14,7 +14,7 @@
                 <div class="content"> 
                     
                     <div class="center_content">
-                        <input type="text" class="form-control" id="searchnav">
+                        <input type="text" class="form-control" placeholder="Veuillez choisir une tache !" id="searchnav">
                         <div class="searchnav">
                         <div class="table-responsive">
                             <table class="table table-hover">
